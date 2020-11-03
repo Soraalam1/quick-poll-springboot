@@ -2,6 +2,7 @@ package com.quickpoll.handler;
 
 import com.quickpoll.dto.error.ErrorDetail;
 import com.quickpoll.dto.error.ValidationError;
+import com.quickpoll.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
@@ -11,8 +12,12 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,16 +79,16 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     //WE DELETED THIS NEXT ONE AFTER MAKING handleValidationError()
 
-    //    @ExceptionHandler(ResourceNotFoundException.class)
-//    @ResponseBody
-//    public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException rnfe, HttpServletRequest requrest){
-//        ErrorDetail errorDetail = new ErrorDetail();
-//        errorDetail.setTimeStamp(new Date().getTime());
-//        errorDetail.setStatus(HttpStatus.NOT_FOUND.value());
-//        errorDetail.setTitle("Resource Not Found");
-//        errorDetail.setDetail(rnfe.getMessage());
-//        errorDetail.setDeveloperMessage(rnfe.getClass().getName());
-//
-//        return new ResponseEntity<>(errorDetail, null, HttpStatus.NOT_FOUND);
-//    }
+        @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseBody
+    public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException rnfe, HttpServletRequest requrest){
+        ErrorDetail errorDetail = new ErrorDetail();
+        errorDetail.setTimeStamp(new Date().getTime());
+        errorDetail.setStatus(HttpStatus.NOT_FOUND.value());
+        errorDetail.setTitle("Resource Not Found");
+        errorDetail.setDetail(rnfe.getMessage());
+        errorDetail.setDeveloperMessage(rnfe.getClass().getName());
+
+        return new ResponseEntity<>(errorDetail, null, HttpStatus.NOT_FOUND);
+    }
 }

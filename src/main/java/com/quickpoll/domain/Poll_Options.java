@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Option {
+public class Poll_Options {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +18,11 @@ public class Option {
     //@JsonProperty("value")
     private String value;
 
-    public Option() {
+    public Poll_Options() {
     }
 
 
-    public Option(Long id, String value) {
+    public Poll_Options(Long id, String value) {
         this.id = id;
         this.value = value;
     }

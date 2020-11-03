@@ -15,14 +15,14 @@ public class Vote {
 
     @ManyToOne
     @JoinColumn(name = "OPTION_ID")
-    private Option option;
+    private Poll_Options pollOptions;
 
     public Vote() {
     }
 
-    public Vote(Long id, Option option) {
+    public Vote(Long id, Poll_Options pollOptions) {
         this.id = id;
-        this.option = option;
+        this.pollOptions = pollOptions;
     }
 
     public Long getId() {
@@ -33,12 +33,12 @@ public class Vote {
         this.id = id;
     }
 
-    public Option getOption() {
-        return option;
+    public Poll_Options getOption() {
+        return pollOptions;
     }
 
-    public void setOption(Option option) {
-        this.option = option;
+    public void setOption(Poll_Options pollOptions) {
+        this.pollOptions = pollOptions;
     }
 
 

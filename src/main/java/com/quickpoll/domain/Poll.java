@@ -24,7 +24,7 @@ public class Poll {
     @JoinColumn(name = "POLL_ID")
     @OrderBy
     @Size(min = 2, max = 6)
-    private Set<Option> options;
+    private Set<Poll_Options> pollOptions;
 
     public Long getId() {
         return id;
@@ -33,22 +33,22 @@ public class Poll {
     public Poll() {
     }
 
-    public Poll(Long id, String question, Set<Option> options) {
+    public Poll(Long id, String question, Set<Poll_Options> pollOptions) {
         this.id = id;
         this.question = question;
-        this.options = options;
+        this.pollOptions = pollOptions;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Set<Option> getOptions() {
-        return options;
+    public Set<Poll_Options> getOptions() {
+        return pollOptions;
     }
 
-    public void setOptions(Set<Option> options) {
-        this.options = options;
+    public void setOptions(Set<Poll_Options> pollOptions) {
+        this.pollOptions = pollOptions;
     }
 
     public String getQuestion() {
@@ -59,9 +59,9 @@ public class Poll {
         this.question = question;
     }
 
-    public Poll(String question, Set<Option> options) {
+    public Poll(String question, Set<Poll_Options> pollOptions) {
         this.question = question;
-        this.options = options;
+        this.pollOptions = pollOptions;
     }
 
 
